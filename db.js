@@ -1,10 +1,11 @@
 import { MongoClient } from "mongodb";
 
 let dbConnection;
+let uri = process.env.DB_CONNECTION;
 
 // cb => function we want to run after the connect is establised
 const connectToDb = (cb) => {
-  MongoClient.connect("mongodb://localhost:27017/bookstore")
+  MongoClient.connect(uri)
     .then((client) => {
       dbConnection = client.db();
       return cb();
